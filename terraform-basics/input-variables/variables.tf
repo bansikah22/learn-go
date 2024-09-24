@@ -10,7 +10,6 @@ variable "content" {
 
 variable "prefix" {
     default = "Mrs"
-    type = list
 }
 
 variable "seperator" {

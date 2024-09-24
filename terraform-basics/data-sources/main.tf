@@ -9,6 +9,6 @@ resource "random_pet" "my-pet" {
   length    = var.length
 }
 
-data "local_file" "dog" {
-  filename = "./dogs.txt"
-}
+# data "local_file" "dog" {
+#   filename = "./dogs.txt"
+# }
