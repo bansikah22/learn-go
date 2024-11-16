@@ -14,15 +14,24 @@ resource "aws_security_group" "ec2_security_group" {
   ingress {
     from_port   = 80                  # Allow connections on port 80 (HTTP)
     to_port     = 80                  # Allow connections on port 80 (HTTP)
-    protocol    = "tcp"               # Use TCP protocol
+    protocol    = "tcp" 
+    description = "HTTP"              # Use TCP protocol
     cidr_blocks = ["0.0.0.0/0"]       # Allow from any IP address (0.0.0.0/0)
   }
+
+ingress {
+  from_port = 8082
+  to_port   = 8082
+  protocol  = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+}
 
   # Ingress rule to allow HTTPS (port 443) access from anywhere (0.0.0.0/0)
   ingress {
     from_port   = 443                 # Allow connections on port 443 (HTTPS)
     to_port     = 443                 # Allow connections on port 443 (HTTPS)
     protocol    = "tcp"               # Use TCP protocol
+    description = "HTTPS"
     cidr_blocks = ["0.0.0.0/0"]       # Allow from any IP address (0.0.0.0/0)
   }
 
