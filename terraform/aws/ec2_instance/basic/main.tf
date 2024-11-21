@@ -25,7 +25,7 @@ resource "aws_instance" "production_dem" {
   vpc_security_group_ids = [aws_security_group.ec2_security_group.id] 
 
   # User data script to set up a development environment on the EC2 instance
-  user_data = file("./scripts/setup-dev-environment.sh")
+  user_data = "${file("setup-dev-environment.sh")}"
   
   # Tags to identify the EC2 instance
   tags = {
