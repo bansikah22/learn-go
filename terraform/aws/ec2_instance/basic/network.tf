@@ -1,3 +1,4 @@
+# network.tf
 # Create a Virtual Private Cloud (VPC) with a CIDR block of 10.0.0.0/16
 resource "aws_vpc" "main_vpc" {
   cidr_block = "10.0.0.0/16"  # CIDR block for the VPC (IP range for the VPC)

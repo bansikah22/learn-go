@@ -1,3 +1,4 @@
+# variables.tf
 # Define a variable for AWS access key
 variable "aws_access_key" {
   description = "AWS access key"  
@@ -38,3 +39,9 @@ variable "ami_id" {
   default     = "ami-09042b2f6d07d164a"                
 }
 
+# Define a variable for the domain name
+variable "domain_name" {
+  description = "The domain name for Route 53"
+  type        = string
+  default = "bansikahadorsys.com"
+}

@@ -1,3 +1,4 @@
+# main.tf
 # Generate an RSA 4096-bit private key
 resource "tls_private_key" "rsa_4096" {
   algorithm = "RSA"
@@ -10,10 +11,9 @@ resource "aws_key_pair" "key_pair" {
   public_key = tls_private_key.rsa_4096.public_key_openssh  
 }
 
-# Save the generated private key to a local file for SSH access
-resource "local_file" "private_key" {
-  content  = tls_private_key.rsa_4096.private_key_pem 
-  filename = "${var.key_name}.pem"                   
+# Allocate an Elastic IP
+resource "aws_eip" "elastic_ip" {
+  instance = aws_instance.production_dem.id
 }
 
 # Provision an AWS EC2 instance
@@ -25,7 +25,8 @@ resource "aws_instance" "production_dem" {
   vpc_security_group_ids = [aws_security_group.ec2_security_group.id] 
 
   # User data script to set up a development environment on the EC2 instance
-  user_data = file("scripts/setup-dev-environment.sh")
+  user_data = file("./scripts/setup-dev-environment.sh")
+  
   # Tags to identify the EC2 instance
   tags = {
     Name = "production_dem" 

@@ -1,7 +1,8 @@
+# output.tf
 # Output the public IP address of the EC2 instance
 output "instance_public_ip" {
   description = "The public IP of the EC2 instance"  
-  value       = aws_instance.production_dem.public_ip  
+  value       = aws_eip.elastic_ip.public_ip  
 }
 
 # Output the path to the private key file generated for the EC2 instance

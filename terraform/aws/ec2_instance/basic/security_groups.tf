@@ -1,3 +1,4 @@
+# security_groups.tf
 # Define a security group for EC2 instances in the VPC
 resource "aws_security_group" "ec2_security_group" {
   vpc_id = aws_vpc.main_vpc.id  # Attach the security group to the main VPC
