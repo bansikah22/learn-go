@@ -42,5 +42,17 @@ pip3 --version
 # Clean up and remove unnecessary packages to free up space
 sudo apt autoremove -y
 
+# Format the volume (ext4)
+sudo mkfs -t ext4 /dev/xvdf
+
+# Create a mount point directory
+sudo mkdir -p /mnt/ebs
+
+# Mount the volume
+sudo mount /dev/xvdf /mnt/ebs
+
+# Ensure persistence across reboots
+echo "/dev/xvdf /mnt/ebs ext4 defaults,nofail 0 2" | sudo tee -a /etc/fstab
+
 # Print a confirmation message after setup
 echo "Development environment setup complete."

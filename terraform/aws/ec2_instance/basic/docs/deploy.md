@@ -13,7 +13,7 @@
 ssh -i "auto-generated-key.pem" ubuntu@35.158.96.126
 chmod 400 auto-generated-key.pem if you encounter problems with permissions
 
-destroy ec2 machine 
+#destroy ec2 machine 
 terraform destroy -auto-approve
 ```
 Below is a Terraform configuration that includes all the necessary components for a fully functional EC2 instance.

@@ -7,8 +7,8 @@ output "instance_public_ip" {
 
 # Output the path to the private key file generated for the EC2 instance
 output "private_key_path" {
-  description = "Path to the private key file"  
-  value       = local_file.private_key.filename  
+  description = "Path to the private key file"
+  value       = local_file.private_key.filename
 }
 
 # Output the ID of the VPC

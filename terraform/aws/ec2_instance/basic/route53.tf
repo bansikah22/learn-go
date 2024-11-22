@@ -22,3 +22,12 @@ resource "aws_route53_record" "www_a_record" {
   ttl      = 300
   records   = [aws_eip.elastic_ip.public_ip]
 }
+
+# Create a wildcard A record for subdomains
+resource "aws_route53_record" "wildcard_a_record" {
+  zone_id = aws_route53_zone.main.zone_id
+  name    = "*"
+  type    = "A"
+  ttl     = 300
+  records = [aws_eip.elastic_ip.public_ip]
+}
