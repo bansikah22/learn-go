@@ -6,7 +6,7 @@ resource "tls_private_key" "rsa_4096" {
 }
 
 resource "local_file" "private_key" {
-  filename = "${path.module}/private_key.pem"
+  filename = "${path.module}/var.key_name.pem"
   content  = tls_private_key.rsa_4096.private_key_pem
 }
 

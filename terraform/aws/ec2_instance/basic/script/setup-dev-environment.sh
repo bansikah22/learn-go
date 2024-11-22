@@ -6,8 +6,17 @@ sudo apt upgrade -y
 
 # Install Nginx web server (latest version)
 sudo apt install nginx -y
-sudo systemctl enable nginx  
-sudo systemctl start nginx   
+
+# Disable and stop Nginx service to avoid port conflicts with Traefik
+sudo systemctl disable nginx
+sudo systemctl stop nginx
+
+# Optionally comment out the default server block in Nginx configuration
+sudo sed -i 's/listen 80;/#listen 80;/' /etc/nginx/sites-available/default
+sudo sed -i 's/listen \[::\]:80;/#listen [::]:80;/' /etc/nginx/sites-available/default
+
+# Reload Nginx to apply changes
+sudo systemctl reload nginx
 
 # Install Docker and necessary dependencies (latest stable version)
 sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
@@ -53,6 +62,15 @@ sudo mount /dev/xvdf /mnt/ebs
 
 # Ensure persistence across reboots
 echo "/dev/xvdf /mnt/ebs ext4 defaults,nofail 0 2" | sudo tee -a /etc/fstab
+
+# Clone the repository containing the Docker Compose files
+git clone https://github.com/bansikah22/shop-app.git
+
+# Navigate to the production directory
+cd shop-app/docker-compose/production
+
+# Start the Docker Compose services in detached mode
+docker-compose up -d
 
 # Print a confirmation message after setup
 echo "Development environment setup complete."

@@ -28,3 +28,9 @@ output "internet_gateway_id" {
   description = "The ID of the Internet Gateway"  
   value       = aws_internet_gateway.igw.id  
 }
+
+# Output the key name
+output "key_name" {
+  description = "The key name"  
+  value       = var.key_name  
+}
