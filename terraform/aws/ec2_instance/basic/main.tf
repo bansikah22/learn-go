@@ -21,7 +21,7 @@ data "aws_availability_zones" "available" {
   state = "available"
 }
 
-# Example usage for EBS volume
+# resource for EBS volume
 resource "aws_ebs_volume" "ebs" {
   availability_zone = data.aws_availability_zones.available.names[0]  # Use the first available AZ
   size              = 20  # Size in GiB
@@ -31,13 +31,11 @@ resource "aws_ebs_volume" "ebs" {
   }
 }
 
-
-
 # Attach the EBS volume to the EC2 instance
 resource "aws_volume_attachment" "ebs_attach" {
   device_name = "/dev/xvdf"  # Name of the device on the instance
-  volume_id   = aws_ebs_volume.ebs.id  # EBS volume ID
-  instance_id = aws_instance.production_dem.id  # EC2 instance ID
+  volume_id   = aws_ebs_volume.ebs.id  
+  instance_id = aws_instance.production_dem.id 
 }
 
 
